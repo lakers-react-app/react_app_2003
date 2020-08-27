@@ -13,4 +13,8 @@ export default {
             msg: '登录成功'
         });
     },
+    'GET /api/checkToken': {
+        status: 0,
+        msg: 'token校验成功'
+    }
 }

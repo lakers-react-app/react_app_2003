@@ -1,15 +1,16 @@
 import { defineConfig } from 'umi';
-
+import routes from './src/config/routes'
 export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
-  routes: [
-    { path: '/', component: '@/layouts' },
-    { path: '/login', component: '@/pages/login' },
-    { path: '/user', component: '@/pages/user' },
-    { exact: true, path: '/list/:id', component: '@/pages/list/[id]' },
-    { exact: true, path: '/login/item', component: '@/pages/login/Item' },
-    { component: '@/pages/404' },
-  ],
+  routes,
+  layout:{
+    name: 'Lakers', 
+    locale: true,
+    logo: 'https://ftp.bmp.ovh/imgs/2019/11/8dea885bcee7fb02.png'
+  },
+  request: {
+    dataField: '',
+  },
 });

@@ -1,20 +1,10 @@
-import React,{useEffect} from 'react'
-import {request} from 'umi'
+import React from 'react'
 
-export default function Login() {
-    useEffect(() => {
-        request('/api/user/login',{
-           data: {
-               name: '兵哥'
-           },
-           method: 'POST'
-        }).then(res => {
-            console.log('res',res)
-        }).catch(error => Promise.reject(error))
-    },[])
+export default function index() {
     return (
         <div>
             登录
+            
         </div>
     )
 }

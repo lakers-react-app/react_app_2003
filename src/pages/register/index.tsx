@@ -1,11 +1,10 @@
 import React from 'react'
 
- function index() {
+export default function index() {
     return (
         <div>
+            注册
             
         </div>
     )
 }
-index.wrappers = ['@/wrappers/auth']
-export default index 

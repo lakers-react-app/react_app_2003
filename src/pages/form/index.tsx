@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Item() {
+export default function index() {
     return (
         <div>
-            Item
+            
         </div>
     )
 }
