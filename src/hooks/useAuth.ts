@@ -1,10 +1,10 @@
-import React, { useState,useEffect } from 'react';
-import services from '@/services'
-export default async function useAuth () {
-    const {status} = await services.checkToken()
-    if (status == 1){
-        return true
-    } else {
-        return false 
-    }
+import { useRequest } from 'umi';
+import services from '@/services';
+//! 这个hooks的作用就是用于判断咋们的token是否合法有效
+export default function useAuth() {
+  const { loading, data } = useRequest(services.checkToken);
+  if (loading) {
+    return 'loading';
+  }
+  return data;
 }

@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { Component } from 'react';
+import AvatarComp from './AvatorComp';
 
-export default function index() {
+export default class index extends Component {
+  render() {
     return (
-        <div>
-            用户页面
-        </div>
-    )
+      <div>
+        <AvatarComp />
+      </div>
+    );
+  }
 }
