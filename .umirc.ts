@@ -15,6 +15,6 @@ export default defineConfig({
   },
   dva: {
     immer: true,
-    hmr: false,
+    hmr: true,
   },
 });

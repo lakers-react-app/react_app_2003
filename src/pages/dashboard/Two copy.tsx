@@ -1,25 +1,21 @@
-import React, { useEffect, useRef } from 'react';
-import { connect } from 'umi';
+import React, { FC, useEffect } from 'react';
 import G6 from '@antv/g6';
-import ReactDOM from 'react-dom';
-const Two = ({ dashboard, dispatch, location }) => {
-  const ref = useRef(null);
-  let graph = null;
-  useEffect(() => {
-    dispatch({
-      type: 'dashboard/getDataSource',
-    });
-  }, []);
+import { connect, useRequest } from 'umi';
+import services from '@/services';
 
+const Two: FC = ({ dispatch, dashboard }) => {
   useEffect(() => {
-    if (!graph) {
-      console.log('dashboard.dataSource.id', dashboard.dataSource.id);
-      if (!dashboard.dataSource.id) return;
-
-      graph = new G6.TreeGraph({
-        container: ReactDOM.findDOMNode(ref.current),
-        width: 1000,
-        height: 500,
+    console.log('dataSource', dashboard.dataSource);
+    if (!dashboard.dataSource.id) {
+      dispatch({
+        type: 'dashboard/getDataSource',
+      });
+      const width = document.getElementById('g6').scrollWidth;
+      const height = document.getElementById('g6').scrollHeight || 500;
+      const graph = new G6.TreeGraph({
+        container: 'g6',
+        width,
+        height,
         linkCenter: true,
         modes: {
           default: [
@@ -62,14 +58,15 @@ const Two = ({ dashboard, dispatch, location }) => {
         };
       });
       graph.data(dashboard.dataSource);
+
       graph.render();
       graph.fitView();
     }
   });
-
   return (
     <div>
-      <div ref={ref}></div>
+      <h3> 通过g6来打造关系图 </h3>
+      <div id="g6"></div>
     </div>
   );
 };
