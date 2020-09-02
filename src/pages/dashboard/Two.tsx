@@ -10,66 +10,9 @@ const Two = ({ dashboard, dispatch, location }) => {
       type: 'dashboard/getDataSource',
     });
   }, []);
-
-  useEffect(() => {
-    if (!graph) {
-      console.log('dashboard.dataSource.id', dashboard.dataSource.id);
-      if (!dashboard.dataSource.id) return;
-
-      graph = new G6.TreeGraph({
-        container: ReactDOM.findDOMNode(ref.current),
-        width: 1000,
-        height: 500,
-        linkCenter: true,
-        modes: {
-          default: [
-            {
-              type: 'collapse-expand',
-              onChange: function onChange(item, collapsed) {
-                const data = item.get('model').data;
-                data.collapsed = collapsed;
-                return true;
-              },
-            },
-            'drag-canvas',
-            'zoom-canvas',
-          ],
-        },
-        defaultNode: {
-          size: 26,
-          style: {
-            fill: '#C6E5FF',
-            stroke: '#5B8FF9',
-          },
-        },
-        defaultEdge: {
-          style: {
-            stroke: '#A3B1BF',
-          },
-        },
-        layout: {
-          type: 'dendrogram',
-          direction: 'LR',
-          nodeSep: 20,
-          rankSep: 100,
-          radial: true,
-        },
-      });
-
-      graph.node(function(node) {
-        return {
-          label: node.id,
-        };
-      });
-      graph.data(dashboard.dataSource);
-      graph.render();
-      graph.fitView();
-    }
-  });
-
   return (
     <div>
-      <div ref={ref}></div>
+      <div id="container"></div>
     </div>
   );
 };
